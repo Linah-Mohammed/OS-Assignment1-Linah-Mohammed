@@ -31,6 +31,11 @@ class Process implements Runnable {
     private int remainingTime; // Time left for the process to finish its execution
 
     private int priority; // Feature 1 : Added priority attribute to each process (1-5)
+
+    // Feature 3
+    public long creationTime;
+    public long waitingTime;
+
     // Constructor to initialize the process with name, burst time, and time quantum
 
     public Process(String name, int burstTime, int timeQuantum) {
@@ -40,6 +45,10 @@ class Process implements Runnable {
         this.remainingTime = burstTime; // Initially, remaining time is equal to the burst time
 
         this.priority = 1 + new Random().nextInt(5); // Feature 1
+
+        // Feature 3
+        this.creationTime = System.currentTimeMillis();
+        this.waitingTime = 0;
     }
 
     // This method will be called when the thread for this process is started
@@ -150,6 +159,11 @@ class Process implements Runnable {
     // Check if the process has finished (i.e., no remaining time)
     public boolean isFinished() {
         return remainingTime <= 0;
+    }
+
+    // Feature 3
+    public long getWaitingTime() {
+        return waitingTime;
     }
 }
 
@@ -298,6 +312,16 @@ public class SchedulerSimulation {
                 Colors.RESET + "\n");
         // Feature 2
         System.out.println("Total context switches: " + contextSwitches);
+        // Feature 3
+        System.out.println("\nPROCESS SUMMARY");
+        System.out.println("Name | Burst Time | Waiting Time");
+
+        for (Process p : processMap.values()) {
+            System.out.println(
+                    p.getName() + " | " +
+                            p.getBurstTime() + " | " +
+                            p.getWaitingTime());
+        }
     }
 
     // Method to add a process to the queue and map, while printing a "ready"
@@ -306,6 +330,10 @@ public class SchedulerSimulation {
             Map<Thread, Process> processMap) {
         // Create a new thread to run the process
         Thread thread = new Thread(process);
+        // Feature 3
+        long now = System.currentTimeMillis();
+        process.waitingTime += (now - process.creationTime);
+        process.creationTime = now;
 
         // Add the thread to the ready queue
         processQueue.add(thread);
@@ -315,6 +343,7 @@ public class SchedulerSimulation {
         processMap.put(thread, process);
 
         // Print a message indicating the process has entered the ready queue
+
         System.out.println(Colors.BLUE + "  ➕ " + Colors.BOLD + Colors.CYAN + process.getName() +
                 Colors.RESET + Colors.BLUE + // Feature 1
                 " added to ready queue (Priority: " + process.getPriority() + ")" + Colors.RESET +
