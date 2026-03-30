@@ -13,7 +13,7 @@ Document your development process as you work on the assignment. Add entries sho
 
 ## Example Entry Format:
 
-### Entry 1 - [April 1, 2026, 2:30 PM]
+### Entry 1 - [March 27, 2026, 11:40 PM]
 **What I did**: Forked the repository and set up my student ID
 
 **Details**: 
