@@ -449,11 +449,11 @@ Submit a **text file** named: `YourName_StudentID_Assignment1.txt`
 
 **The file should contain:**
 ```
-Student Name: [ Linah Mohammed Al-tamimi ]
-Student ID: [ 445052202 ]
-GitHub Username: [ Linah-Mohammed ]
+Student Name: Linah Mohammed Al-tamimi 
+Student ID:  445052202 
+GitHub Username:  Linah-Mohammed 
 Repository Link: https://github.com/Linah-Mohammed/OS-Assignment1-Linah-Mohammed
-Video Link: [Google Drive link - make sure it's accessible to anyone with the link]
+Video Link: https://drive.google.com/file/d/12qN1CGyxm2kSR2sBPIvzDkAgM_0V99kk/view?usp=drive_link
 Date Submitted:  [ April 2, 2026 ]
 ```
 
